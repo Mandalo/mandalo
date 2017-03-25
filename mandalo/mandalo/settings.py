@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["akgunter.ddns.net"]
 # Application definition
 
 INSTALLED_APPS = [
+    'submit.apps.SubmitConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
