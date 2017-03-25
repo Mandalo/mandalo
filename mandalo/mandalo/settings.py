@@ -25,7 +25,7 @@ SECRET_KEY = '39zcfz*f&ao)lk50ei0mk1a&wi9jk)d-z&7h(e_vfumy$b+11r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["akgunter.ddns.net"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "akgunter.ddns.net"]
 
 
 # Application definition
