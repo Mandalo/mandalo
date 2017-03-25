@@ -1,0 +1,27 @@
+FONT:
+
+Dosis
+
+"mandalo" - Dosis Bold
+"program submission system" - Dosis Semibold
+
+COLORS:
+
+Red: #ce1126
+Blue: #14213d
+Gray: #303030
+
+DOWNLOAD:
+
+https://www.fontsquirrel.com/fonts/dosis
+https://fonts.google.com/specimen/Dosis?selection.family=Dosis
+
+HTML/CSS:
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+</style>
+
+<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+
+font-family: 'Dosis', sans-serif;
