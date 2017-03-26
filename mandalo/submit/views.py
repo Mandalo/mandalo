@@ -117,7 +117,15 @@ def upload(request):
     else:
         form = UploadFileForm()
 
-    return render(request, 'submit/upload.html', {'form': form})
+    assign_list = Assignment.objects.order_by('created_date')
+    assign_list = [a.name for a in assign_list]
+
+    lang_list = Language.objects.order_by('name')
+    lang_list = [l.name for l in lang_list]
+ 
+    context = {'assign_list': assign_list, 'lang_list': lang_list, 'form': form}
+
+    return render(request, 'submit/upload.html', context)
 
 
 def handle_uploaded_files(assignment, email, files):
