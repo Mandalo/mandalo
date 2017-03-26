@@ -74,6 +74,10 @@ div#footer ul li a {
   width: 100%;
 }
 
+.labelMargin{
+  margin: 1em 1em 1em 0;
+}
+
 .navbar.navbar-fixed-bottom{
 }
 

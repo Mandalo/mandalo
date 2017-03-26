@@ -1,15 +1,73 @@
 {% extends "submit/landing.html" %}
 
 {% block content %}
+<div id=subclass="container-fluid remove-padding">
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-md-3 margin col-xs-3">
+        <p></p>
+      </div>
+      <div class="col-md-6 col-xs-8">
+        <div class="input-group">
+          <input type="text" class="form-control" name="email" placeholder="Email" aria-describedby="basic-addon2">
+          <span class="input-group-addon" id="basic-addon2">@go.olemiss.edu</span>
+        </div>
+      </div>
+    </div>
 
-<div class="container">
+    <div class="row">
+      <div class="col-md-3 margin col-xs-3">
+        <p></p>
+      </div>
+      <div class="col-md-6 col-xs-8">
+        <div class="form-group">
+            <label class ="labelMargin "for="disabledSelect">Select Assignment:</label>
+            <select class="form-control" name="assignment">
+              {% for a in assign_list %}
+              <option>{{ a }}</option>
+              {% endfor %}
+            </select>
+        </div>
+      </div>
+    </div>
 
-<form action="" method="post", enctype="multipart/form-data">
-  {% csrf_token %}
-  {{form}}
-  <input type="submit" value="Submit">
+  <div id=subclass="container-fluid remove-padding">
+  <div class="row">
+    <div class="col-md-3 margin col-xs-3">
+      <p></p>
+    </div>
+    <div class="col-md-6 col-xs-8">
+      <div class="form-group">
+          <label class ="labelMargin "for="disabledSelect">Select Language:</label>
+          <select class="form-control" name="lang">
+            {% for l in lang_list %}
+            <option>{{ l }}</option>
+            {% endfor %}
+          </select>
+      </div>
+    </div>
+  </div>
+
+  <div id=subclass="container-fluid remove-padding">
+  <div class="row">
+    <div class="col-md-3 margin col-xs-3">
+      <p></p>
+    </div>
+    <div class="col-md-3 margin col-xs-3">
+      {{form}}
+    </div>
+  </div>
+
+  <p></p>
+  <div class="row">
+    <div class="col-md-3 margin col-xs-3">
+      <p></p>
+    </div>
+    <div class="col-md-3 margin col-xs-3">
+      <input type="submit" value="Submit">
+    </div>
+  </div>
 </form>
-
-
 </div>
 {% endblock %}

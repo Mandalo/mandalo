@@ -57,7 +57,7 @@ def upload(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             assignment = request.POST['assignment']
-            email = request.POST['email']
+            email = request.POST['email'] + "@go.olemiss.edu"
             lang = request.POST['lang']
             lang_obj = Language.objects.filter(name=lang)[0]
             files = request.FILES.getlist('files')
@@ -122,8 +122,8 @@ def upload(request):
 
     lang_list = Language.objects.order_by('name')
     lang_list = [l.name for l in lang_list]
- 
-    context = {'assign_list': assign_list, 'lang_list': lang_list, 'form': form}
+
+    context = {'assign_list': assign_list, 'form': form, 'lang_list': lang_list}
 
     return render(request, 'submit/upload.html', context)
 
@@ -156,7 +156,7 @@ def run(job_spec):
     user_email = job_spec['email']
     src_files = job_spec['src_files'].split(';')
     fnames = list(map(lambda s: os.path.join("/code", os.path.basename(s)), src_files))
-   
+
     cmd_list = cmd_template.split(';')
     cmd = " && ".join(map(lambda c: c + " " + " ".join(fnames), cmd_list))
 
