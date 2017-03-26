@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Assigment(models.Model):
+class Assignment(models.Model):
     name = models.CharField(max_length=20)
     language = models.CharField(max_length=20)
     created_date = models.DateTimeField()
