@@ -11,6 +11,7 @@
     <link rel="stylesheet"  type="text/css" href="{% static 'submit/landing.css' %}">
     <title>Mandalo</title>
   </head>
+
   <body>
   <!--Row 1: Header-->
     <div class="container-fluid">
@@ -50,6 +51,7 @@
         <div id="margin" class="col-md-1">
           <p>Margin</p>
         </div>
+      </div>
     </div>
   </div>
   <!-- Row 4: Footer -->
@@ -58,5 +60,11 @@
       <p>Footer</p>
   </div>
   </div>
+
+
+  <!-- page-specific content goes here -->
+  {% block content %}{% endblock %}
+  <!-- end page-specific content -->
+
   </body>
 </html>

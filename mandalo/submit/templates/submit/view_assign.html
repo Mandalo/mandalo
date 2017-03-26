@@ -1,0 +1,19 @@
+{% extends "submit/landing.html" %}
+
+{% block content %}
+<table class="view-users-table">
+<tr>
+  <th>assigment</th>
+  <th>language</th>
+  <th>Due Date</th>
+</tr>
+{% for a in assign_list %}
+<tr>
+  <td><p>{{ a.name }}</p></td>
+  <td><p>{{ a.language }}</p></td>
+  <td><p>{{ a.due_date }}</p></td>
+</tr>
+{% endfor %}
+
+</table>
+{% endblock %}
