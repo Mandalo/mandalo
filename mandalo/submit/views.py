@@ -7,6 +7,7 @@ from .models import Submission
 from .forms import UploadFileForm
 
 import os
+import shutil
 
 
 def index(request):
@@ -58,17 +59,31 @@ def upload(request):
             email = request.POST['email']
             lang = request.POST['lang']
             files = request.FILES.getlist('files')
-            fname_list = handle_uploaded_files(assignment, email, files)
 
             assignment_key = Assignment.objects.filter(
                 name=assignment)[0]
 
-            sub = Submission(
-                email=email, src_files=';'.join(fname_list),
-                result="", assignment=assignment_key,
-                language=lang
-            )
-            sub.save()
+            sub = Submission.objects.filter(email=email).filter(assignment=assignment_key)
+            # if Submission already create, update. Else update
+            if sub:
+                sub = sub[0]
+                base_dir = '../uploads'
+                remove_dir = os.path.join(base_dir, assignment, email)
+                shutil.rmtree(remove_dir)
+
+            fname_list = handle_uploaded_files(assignment, email, files)
+
+            if sub:
+                sub.src_files=';'.join(fname_list)
+                sub.language=lang
+                sub.save()
+            else:
+                sub = Submission(
+                    email=email, src_files=';'.join(fname_list),
+                    result="", assignment=assignment_key,
+                    language=lang
+                )
+                sub.save()
 
             return HttpResponseRedirect('/test')
         else:
