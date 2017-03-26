@@ -11,4 +11,5 @@ def index(request):
 
 def view_assgn(request):
     assign_list = Assignment.objects.order_by('created_date')
-    return HttpResponse("Hello, World!")
+    text = "<br>".join(a.name for a in assign_list)
+    return HttpResponse(text)
