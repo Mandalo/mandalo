@@ -3,6 +3,8 @@
 /* Red - #C8102E, Navy - #13294B */
 div #heading{
   border-bottom: 5px solid #13294B;
+  margin: 0;
+  width: 100%;
 }
 
 div #heading img{
@@ -22,11 +24,28 @@ div #submissions{
 
 div #footer{
   position: fixed;
-  height: 100px;
+  height: 60px;
   bottom: 0;
   width: 100%;
-  background-color: pink;
+  background-color:#13294B;
+  width: 100%;
 }
+
+div#footer ul li {
+  float: left;
+  margin: .8em 2em 0 2em;
+}
+
+div#footer ul li a {
+  font-size: 1em;
+  font-weight: 400;
+  text-decoration: none;
+  color: white;
+  display: block;
+  padding: 0 -.1em 1em .3em;
+}
+
+
 
 .remove-padding {
   padding: 0;
@@ -43,7 +62,16 @@ div #footer{
   text-align: center;
 }
 
+.center-ul {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
 .margin{
+}
+
+.fill {
+  width: 100%;
 }
 
 .navbar.navbar-fixed-bottom{
