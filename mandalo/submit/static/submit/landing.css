@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
 /* Red - #C8102E, Navy - #13294B */
 div #heading{
   border-bottom: 5px solid #13294B;
@@ -9,7 +11,6 @@ div #heading img{
 }
 
 div #welcome{
-    background-color: green;
 }
 
 div #newAssign{
@@ -20,8 +21,38 @@ div #submissions{
 }
 
 div #footer{
+  position: fixed;
+  height: 100px;
+  bottom: 0;
+  width: 100%;
   background-color: pink;
 }
 
+.remove-padding {
+  padding: 0;
+}
+
+.remove-margins {
+  margin: 0;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 .margin{
+}
+
+.navbar.navbar-fixed-bottom{
+}
+
+p {
+  font-family: 'Dosis', sans-serif;
+}
+
+h1 {
+  font-family: 'Dosis Bold', sans-sef;
 }
