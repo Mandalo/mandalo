@@ -28,13 +28,13 @@
               {% for file in files %}
               {% if forloop.counter == 1 %}
               <div class="tab-pane active" id="{{forloop.counter}}">
-<pre class="prettyprint">
+<pre class="prettyprint linenums">
 {{file.1}}
 </pre>
                 </div>
               {% else %}
               <div class="tab-pane" id="{{forloop.counter}}">
-<pre class="prettyprint">
+<pre class="prettyprint linenums">
 {{file.1}}
 </pre>
                 </div>
