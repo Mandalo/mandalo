@@ -89,5 +89,5 @@ ENV/
 .ropeproject
 
 # Other stuff
-*.sqlite3
+.sqlite3
 .*.pyc
