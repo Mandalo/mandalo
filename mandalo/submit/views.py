@@ -13,7 +13,6 @@ import shutil
 
 def index(request):
     return render(request, "submit/landing.html", {})
-    # return HttpResponse("Hello, world. You're at the polls index.")
 
 
 def view_assign(request):
@@ -110,7 +109,7 @@ def upload(request):
             }
 
             out, err = run(job_spec)
-            handle_run(job_spec, out, err)
+            handle_run(sub, out, err)
 
             return HttpResponseRedirect(url)
         else:
@@ -159,10 +158,16 @@ def run(job_spec):
     print(docker_cmd)
     print()
 
-    p = subprocess.Popen(docker_cmd, shell=True, stdout=subprocess.PIPE)
+    p = subprocess.Popen(docker_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p.communicate()
     return out, err
 
 
-def handle_run(job_spec, out, err):
+def handle_run(sub, out, err):
+    print("test")
+    print(err)
+    #print(out)
+    sub.complete = True
+    sub.result = err if err else out
+    sub.save()
     return
