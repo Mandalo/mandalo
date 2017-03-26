@@ -1,0 +1,27 @@
+/* Red - #C8102E, Navy - #13294B */
+div #heading{
+  border-bottom: 5px solid #13294B;
+}
+
+div #heading img{
+  margin: 1%;
+  margin-left: 2%;
+}
+
+div #welcome{
+    background-color: green;
+}
+
+div #newAssign{
+}
+
+div #submissions{
+
+}
+
+div #footer{
+  background-color: pink;
+}
+
+.margin{
+}
