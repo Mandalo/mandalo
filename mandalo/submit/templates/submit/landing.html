@@ -20,32 +20,34 @@
       </div>
     </div>
 
+  <!-- page-specific content goes here -->
+  {% block content %}
   <!--Row 2: Welcome/Bio -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-2 margin">
+        <div class="col-md-2 margin col-xs-2">
           <p>Margin</p>
         </div>
-        <div id="welcome" class="col-md-8">
+        <div id="welcome" class="col-md-8 col-xs-8">
         <p>intro text</p>
         </div>
-        <div  class="col-md-2 margin">
+        <div  class="col-md-2 margin col-xs-2">
           <p>Margin</p>
         </div>
       </div>
 
   <!--Row 3: Buttons -->
     <div class="row">
-        <div class="col-md-1 margin">
+        <div class="col-md-1 margin col-xs-1">
           <p>Margin</p>
         </div>
-        <div id="newAssign" class="col-md-4">
+        <div id="newAssign" class="col-md-4 col-xs-10">
             <button type="button" class="btn btn-primary btn-lg">Submit New</button>
         </div>
         <div class="col-md-2 margin">
           <p>Margin</p>
         </div>
-        <div id="submissions" class="col-md-4">
+        <div id="submissions" class="col-md-4 col-xs-10">
           <button type="button" class="btn btn-primary btn-lg">Previous Assignments</button>
         </div>
         <div class="col-md-1 margin">
@@ -54,17 +56,15 @@
       </div>
     </div>
   </div>
+  {% endblock %}
+  <!-- end page-specific content -->
+
   <!-- Row 4: Footer -->
-  <div class="container-fluid">
+  <div class="container-fluid navbar navbar-fixed-bottom">
     <div id="footer" class="row">
       <p>Footer</p>
   </div>
   </div>
-
-
-  <!-- page-specific content goes here -->
-  {% block content %}{% endblock %}
-  <!-- end page-specific content -->
 
   </body>
 </html>

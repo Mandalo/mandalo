@@ -21,7 +21,12 @@ div #submissions{
 
 div #footer{
   background-color: pink;
+  padding:0;
+  margin:0;
 }
 
 .margin{
+}
+
+.navbar.navbar-fixed-bottom{
 }
