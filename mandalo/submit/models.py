@@ -2,8 +2,13 @@ from django.db import models
 
 
 class Assignment(models.Model):
+    lan = (
+        ('Python', 'python'),
+        ('Java', 'java'),
+        ('C', 'C')
+    )
     name = models.CharField(max_length=20)
-    language = models.CharField(max_length=20)
+    language = models.CharField(max_length=20, choices=lan)
     created_date = models.DateTimeField(auto_now=True)
     due_date = models.DateField('Due Date')
     prompt = models.CharField(max_length=1000)

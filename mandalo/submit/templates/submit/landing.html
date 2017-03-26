@@ -15,37 +15,40 @@
   <body>
   <!--Row 1: Header-->
     <div class="container-fluid">
-      <div id="heading" class="row">
+      <div id="heading" class="row center">
         <img src="{% static 'submit/mandalo.png' %}">
       </div>
     </div>
 
+  <!-- page-specific content goes here -->
+  {% block content %}
   <!--Row 2: Welcome/Bio -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-2 margin">
+        <div class="col-md-2 margin col-xs-2">
           <p>Margin</p>
         </div>
-        <div id="welcome" class="col-md-8">
-        <p>intro text</p>
+        <div id="welcome" class="col-md-8 col-xs-8">
+        <p class="center"><h1>Welcome!</h1></p>
+        <p class="center">Hello how are you doing</p>
         </div>
-        <div  class="col-md-2 margin">
+        <div  class="col-md-2 margin col-xs-2">
           <p>Margin</p>
         </div>
       </div>
 
   <!--Row 3: Buttons -->
     <div class="row">
-        <div class="col-md-1 margin">
+        <div class="col-md-1 margin col-xs-1">
           <p>Margin</p>
         </div>
-        <div id="newAssign" class="col-md-4">
+        <div id="newAssign" class="col-md-4 col-xs-10">
             <button type="button" class="btn btn-primary btn-lg">Submit New</button>
         </div>
         <div class="col-md-2 margin">
           <p>Margin</p>
         </div>
-        <div id="submissions" class="col-md-4">
+        <div id="submissions" class="col-md-4 col-xs-10">
           <button type="button" class="btn btn-primary btn-lg">Previous Assignments</button>
         </div>
         <div class="col-md-1 margin">
@@ -54,17 +57,15 @@
       </div>
     </div>
   </div>
-  <!-- Row 4: Footer -->
-  <div class="container-fluid">
-    <div id="footer" class="row">
-      <p>Footer</p>
-  </div>
-  </div>
-
-
-  <!-- page-specific content goes here -->
-  {% block content %}{% endblock %}
+  {% endblock %}
   <!-- end page-specific content -->
+
+  <!-- Row 4: Footer -->
+  <div class="container-fluid remove-margins">
+    <div id="footer" class="row remove-margins">
+      <p class="remove-margins">Footer</p>
+  </div>
+  </div>
 
   </body>
 </html>
