@@ -5,7 +5,7 @@ class Assignment(models.Model):
     name = models.CharField(max_length=20)
     language = models.CharField(max_length=20)
     created_date = models.DateTimeField(auto_now=True)
-    due_date = models.DateField(auto_now=True)
+    due_date = models.DateField('Due Date')
     prompt = models.CharField(max_length=1000)
 
 
