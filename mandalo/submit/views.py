@@ -45,6 +45,8 @@ def view_submission(request, email, assignment):
         string_files.append((name, f.read()))
         f.close()
     context['files'] = string_files
+    context['output'] = sub[0].result
+    context['expected'] = 'Line here'
     return render(request, "submit/view_submission.html", context=context)
 
 

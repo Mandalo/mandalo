@@ -6,44 +6,69 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 
 
-<h1><p class="center">{{name}}</p></h1>
-<p class="center"> {{prompt}} </p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <h1><p class="center">{{name}}</p></h1>
+      <p class="center"> {{prompt}} </p>
+      <ul class="nav nav-tabs" id="myTabs">
+        {% for file in files %}
+          {% if forloop.counter == 1 %}
+          <li class="active"><a href="#{{forloop.counter}}" data-toggle="tab">{{file.0}}</a></li>
+          {% else %}
+          <li><a href="#{{forloop.counter}}" data-toggle="tab">{{file.0}}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
 
+      <div class="tab-content">
 
-<div class="container">
-    <div class="row">
-        <div class="span12">
-            <ul class="nav nav-tabs" id="myTabs">
-              {% for file in files %}
-                {% if forloop.counter == 1 %}
-                <li class="active"><a href="#{{forloop.counter}}" data-toggle="tab">{{file.0}}</a></li>
-                {% else %}
-                <li><a href="#{{forloop.counter}}" data-toggle="tab">{{file.0}}</a></li>
-                {% endif %}
-              {% endfor %}
-            </ul>
-
-            <div class="tab-content">
-
-              {% for file in files %}
-              {% if forloop.counter == 1 %}
-              <div class="tab-pane active" id="{{forloop.counter}}">
+        {% for file in files %}
+        {% if forloop.counter == 1 %}
+        <div class="tab-pane active" id="{{forloop.counter}}">
 <pre class="prettyprint linenums">
 {{file.1}}
 </pre>
-                </div>
-              {% else %}
-              <div class="tab-pane" id="{{forloop.counter}}">
+          </div>
+        {% else %}
+        <div class="tab-pane" id="{{forloop.counter}}">
 <pre class="prettyprint linenums">
 {{file.1}}
 </pre>
-                </div>
-              {% endif %}
-
-              {% endfor %}
             </div>
-        </div>
+          {% endif %}
+
+          {% endfor %}
+      </div>
     </div>
+      <div class="col-xs-6 col-md-6">
+      <h1><p class="center">Output</p></h1>
+      <table class="table">
+        <h2>Available Assignments</h2>
+        <p>Here is a list of available assignments</p>
+        <thead>
+        <tr>
+          <th>Type</th>
+          <th>Result</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><p>Output: </p></td>
+          <td><p>{{ output }}</p></td>
+        </tr>
+
+        <tr>
+          <td><p>Expected:</p></td>
+          <td><p>{{ result }}</p></td>
+        </tr>
+
+        </tbody>
+
+        </table>
+    </div>
+  </div>
+
 </div>
 
 
