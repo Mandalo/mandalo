@@ -1,51 +1,7 @@
-{% load staticfiles %}
+{% extends "submit/landing.html" %}
 
-<!DOCTYPE html>
+{% block content %}
 
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet"  type="text/css" href="{% static 'submit/landing.css' %}">
-    <title>Mandalo</title>
-  </head>
+<p> poo </p>
 
-  <body>
-  <!--Row 1: Header-->
-    <div class="container-fluid">
-      <div id="heading" class="row center">
-        <img src="{% static 'submit/mandalo.png' %}">
-      </div>
-    </div>
-
-  <!-- page-specific content goes here -->
-  {% block content %}
-  <!--Row 2: Welcome/Bio -->
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-2 margin col-xs-2">
-          <p>Margin</p>
-        </div>
-        <div id="welcome" class="col-md-8 col-xs-8">
-        <p class="center"><h1>Welcome!</h1></p>
-        <p class="center">Hello how are you doing</p>
-        </div>
-        <div  class="col-md-2 margin col-xs-2">
-          <p>Margin</p>
-        </div>
-      </div>
-    </div>
-  {% endblock %}
-  <!-- end page-specific content -->
-
-  <!-- Row 4: Footer -->
-  <div class="container-fluid remove-margins">
-    <div id="footer" class="row remove-margins">
-      <p class="remove-margins">Footer</p>
-  </div>
-  </div>
-
-  </body>
-</html>
+{% endblock %}
