@@ -9,7 +9,30 @@ from django.core.urlresolvers import reverse
 import os
 import subprocess
 import shutil
+import datetime
 
+
+def pull(request):
+    context = {}
+    base_upload_dir = '../uploads'
+    if request.method == 'POST':
+        today = str(datetime.datetime.today())
+        cmd = "cd {} && git add . ".format(base_upload_dir)
+        cmd += "&& git commit -m '{}' && git push".format(today)
+        p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out, err = p.communicate()
+        context['result'] = out
+        return render(request, 'submit/success.html', context=context)
+
+    cmd = 'cd {} && git status'.format(base_upload_dir)
+    p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    out, err = p.communicate()
+    context['status'] = out
+
+    return render(request, "submit/pull.html", context=context)
+
+def success(request):
+    return render(request, "submit/success.html", {})
 
 def index(request):
     return render(request, "submit/landing.html", {})

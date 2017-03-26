@@ -1,0 +1,26 @@
+{% extends "submit/landing.html" %}
+
+{% block content %}
+
+
+<div class="container center">
+
+<h1><p class="center">Hey GA! Here is where you get your code</p></h1>
+<h2><p class="center">By pressing the pull button, the server will
+                      do a git pull and all the submissions will be
+                      available to you
+</p></h2>
+<form action="" method="post">
+  {% csrf_token %}
+  <p>
+    {{status}}
+
+  </p>
+
+  <input type="submit" class="btn btn-primary btn-lg center fill" value="Pull"></input>
+
+</form>
+</div>
+
+
+{% endblock %}
