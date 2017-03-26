@@ -33,6 +33,8 @@ def view_submission(request, email, assignment):
     sub = Submission.objects.filter(email=email).filter(assignment=assignment_key)
     if not sub:
         return Http404()
+    context['name'] = assignment_key.name
+    context['prompt'] = assignment_key.prompt
     files = sub[0].src_files.split(';')
     string_files = []
     for file in files:
