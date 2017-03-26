@@ -4,10 +4,11 @@ from django.shortcuts import render  # , render_to_response
 
 from .models import Assignment, Submission, Language
 from .forms import UploadFileForm
+from django.core.urlresolvers import reverse
 
-import json
 import os
 import subprocess
+import shutil
 
 
 def index(request):
@@ -26,14 +27,18 @@ def view_assign(request):
 def view_submission(request, email, assignment):
     context = {}
     email = email + '@go.olemiss.edu'
-    assignment_key = Assignment.objects.filter(
-        name=assignment)
+    assignment_key = Assignment.objects.filter(name=assignment)
+
     if not assignment_key:
-        return Http404()
+        raise Http404()
+
     assignment_key = assignment_key[0]
     sub = Submission.objects.filter(email=email).filter(assignment=assignment_key)
     if not sub:
-        return Http404()
+        raise Http404()
+
+    context['name'] = assignment_key.name
+    context['prompt'] = assignment_key.prompt
     files = sub[0].src_files.split(';')
     string_files = []
     for file in files:
@@ -61,19 +66,36 @@ def upload(request):
             assignment_key = Assignment.objects.filter(
                 name=assignment)[0]
 
-            sub = Submission(
-                email=email, src_files=src_files,
-                result="", assignment=assignment_key,
-                language=lang_obj
-            )
-            sub.save()
+            sub = Submission.objects.filter(email=email).filter(assignment=assignment_key)
+
+            # if Submission already create, update. Else update
+            if sub:
+                sub = sub[0]
+                base_dir = '../uploads'
+                remove_dir = os.path.join(base_dir, assignment, email)
+                shutil.rmtree(remove_dir)
+
+            fname_list = handle_uploaded_files(assignment, email, files)
+
+            if sub:
+                sub.src_files=src_files
+                sub.language=lang_obj
+                sub.save()
+            else:
+                sub = Submission(
+                    email=email, src_files=src_files,
+                    result="", assignment=assignment_key,
+                    language=lang_obj
+                )
+                sub.save()
+            url = reverse('view_submission', kwargs={'email': email[:email.find('@')], 'assignment': assignment})
 
             lang_name = lang_obj.name
             lang_cmd = lang_obj.cmd
             lang_max_exec = lang_obj.max_exec_time
             lang_max_mem = lang_obj.max_mem_usage_KB
 
-            json_dict = {
+            job_spec = {
                 'language': {
                     'name': lang_name,
                     'cmd': lang_cmd,
@@ -85,26 +107,10 @@ def upload(request):
                 'upload_dir': upload_dir,
             }
 
-            '''
-            json_str = json.dumps(json_dict)
+            out, err = run(job_spec)
+            handle_run(job_spec, out, err)
 
-            #docker_cmd = "docker run -v %s:/code/src python_manager python " \
-            #    "manager.py \"%s\"" % (os.path.abspath(upload_dir), json_str)
-            docker_cmd = "docker run -v %s:/manager -v %s:/code python_manager " \
-                    "python manager/manager.py '%s'" % \
-                    (
-                        os.path.abspath("../manager/manager/"),
-                        os.path.abspath(upload_dir),
-                        json_str
-                    )
-
-            p = subprocess.Popen(docker_cmd, shell=True, stdout=subprocess.PIPE)
-            out, err = p.communicate()
-            print(out)
-            '''
-            run(json_dict)
-
-            return HttpResponseRedirect('/test')
+            return HttpResponseRedirect(url)
         else:
             messages.error(request, "Error")
     else:
@@ -144,8 +150,6 @@ def run(job_spec):
    
     cmd_list = cmd_template.split(';')
     cmd = " && ".join(map(lambda c: c + " " + " ".join(fnames), cmd_list))
-    #cmd = "ls"
-    #sub_cmd = 'ulimit -t %d && %s' % (max_exec, cmd)
 
     docker_cmd = "docker run -v %s:/code python_manager %s" % \
             (os.path.abspath(upload_dir), cmd)
@@ -155,4 +159,8 @@ def run(job_spec):
 
     p = subprocess.Popen(docker_cmd, shell=True, stdout=subprocess.PIPE)
     out, err = p.communicate()
-    print(out)
+    return out, err
+
+
+def handle_run(job_spec, out, err):
+    return
