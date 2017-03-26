@@ -1,0 +1,51 @@
+{% extends "submit/landing.html" %}
+
+
+{% block content %}
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <ul class="nav nav-tabs" id="myTabs">
+              {% for file in files %}
+                {% if forloop.counter == 1 %}
+                <li class="active"><a href="#{{forloop.counter}}" data-toggle="tab">{{file.0}}</a></li>
+                {% else %}
+                <li><a href="#{{forloop.counter}}" data-toggle="tab">{{file.0}}</a></li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+
+            <div class="tab-content">
+
+              {% for file in files %}
+              {% if forloop.counter == 1 %}
+              <div class="tab-pane active" id="{{forloop.counter}}">
+<pre class="prettyprint">
+{{file.1}}
+</pre>
+                </div>
+              {% else %}
+              <div class="tab-pane " id="{{forloop.counter}}">
+<pre class="prettyprint">
+{{file.1}}
+</pre>
+                </div>
+              {% endif %}
+
+              {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

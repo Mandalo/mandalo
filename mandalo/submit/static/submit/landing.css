@@ -84,3 +84,9 @@ p {
 h1 {
   font-family: 'Dosis Bold', sans-sef;
 }
+
+.tab-pane-active{
+  height:300px;
+  overflow-y:scroll;
+  width:100%;
+}

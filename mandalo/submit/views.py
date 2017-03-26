@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render  # , render_to_response
 
 from .models import Assignment
@@ -20,6 +20,29 @@ def view_assign(request):
     context = {"assign_list": assign_list, "pwd": os.getcwd()}
     page = render(request, 'submit/view_assign.html', context=context)
     return page
+
+
+def view_submission(request, email, assignment):
+    context = {}
+    email = email + '@go.olemiss.edu'
+    assignment_key = Assignment.objects.filter(
+        name=assignment)
+    if not assignment_key:
+        return Http404()
+    assignment_key = assignment_key[0]
+    sub = Submission.objects.filter(email=email).filter(assignment=assignment_key)
+    if not sub:
+        return Http404()
+    files = sub[0].src_files.split(';')
+    string_files = []
+    for file in files:
+        f = open(file, 'r+')
+        name = f.name[f.name.rfind('/')+1:]
+        string_files.append((name, f.read()))
+        f.close()
+    context['files'] = string_files
+    return render(request, "submit/view_submission.html", context=context)
+
 
 
 def upload(request):

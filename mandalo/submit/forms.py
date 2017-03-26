@@ -12,6 +12,7 @@ class UploadFileForm(forms.Form):
         map(lambda s: s.replace(" ", "_"), assign_list)
     )
 
+
     assignment = forms.ChoiceField(choices=assign_choices)
     lang = forms.ChoiceField(choices=submit.const.lan)
     email = forms.EmailField()
