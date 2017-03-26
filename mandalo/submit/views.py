@@ -5,6 +5,7 @@ from django.shortcuts import render  # , render_to_response
 from .models import Assignment
 from .models import Submission
 from .forms import UploadFileForm
+from django.core.urlresolvers import reverse
 
 import os
 import shutil
@@ -84,8 +85,8 @@ def upload(request):
                     language=lang
                 )
                 sub.save()
-
-            return HttpResponseRedirect('/test')
+            url = reverse('view_submission', kwargs={'email': email[:email.find('@')], 'assignment': assignment})
+            return HttpResponseRedirect(url)
         else:
             messages.error(request, "Error")
     else:
