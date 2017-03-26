@@ -47,7 +47,7 @@ def view_submission(request, email, assignment):
         f.close()
     context['files'] = string_files
     context['output'] = sub[0].result
-    context['expected'] = 'Line here'
+    context['expected'] = assignment_key.expected_result + "\n"
     return render(request, "submit/view_submission.html", context=context)
 
 
@@ -165,8 +165,7 @@ def run(job_spec):
 
 def handle_run(sub, out, err):
     print("test")
-    print(err)
-    #print(out)
+    print(out)
     sub.complete = True
     sub.result = err if err else out
     sub.save()

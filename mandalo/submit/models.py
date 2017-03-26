@@ -14,6 +14,7 @@ class Assignment(models.Model):
     created_date = models.DateTimeField(auto_now=True)
     due_date = models.DateField('Due Date')
     prompt = models.CharField(max_length=1000)
+    expected_result = models.CharField(max_length=2000, null=True)
 
 
 class Submission(models.Model):
