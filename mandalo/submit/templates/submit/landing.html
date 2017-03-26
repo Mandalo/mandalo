@@ -8,26 +8,55 @@
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet"  type="text/css" href="{% static 'submit/landing.css' %}">
     <title>Mandalo</title>
   </head>
   <body>
+  <!--Row 1: Header-->
     <div class="container-fluid">
-      <img src="{% static 'submit/mandalo.png' %}">
+      <div id="heading" class="row">
+        <img src="{% static 'submit/mandalo.png' %}">
+      </div>
     </div>
-    <div class="container">
+
+  <!--Row 2: Welcome/Bio -->
+    <div class="container-fluid">
       <div class="row">
-        <div class="col" style="background-color: green;">
+        <div id="margin" class="col-md-2">
+          <p>Margin</p>
+        </div>
+        <div id="welcome" class="col-md-8">
         <p>intro text</p>
         </div>
-      </div>
-      <div class="row">
-        <div class="col" style="background-color:red;">
-          <p>button1</p>
+        <div  id="margin" class="col-md-2">
+          <p>Margin</p>
         </div>
-        <div class="col" style="background-color:blue;">
-          <p>button2</p>
+      </div>
+
+  <!--Row 3: Buttons -->
+    <div class="row">
+        <div id="margin" class="col-md-1">
+          <p>Margin</p>
+        </div>
+        <div id="newAssign" class="col-md-4">
+            <button type="button" class="btn btn-primary btn-lg">Submit New</button>
+        </div>
+        <div id="margin" class="col-md-2">
+          <p>Margin</p>
+        </div>
+        <div id="submissions" class="col-md-4">
+          <button type="button" class="btn btn-primary btn-lg">Previous Assignments</button>
+        </div>
+        <div id="margin" class="col-md-1">
+          <p>Margin</p>
         </div>
     </div>
+  </div>
+  <!-- Row 4: Footer -->
+  <div class="container-fluid">
+    <div id="footer" class="row">
+      <p>Footer</p>
+  </div>
   </div>
   </body>
 </html>
