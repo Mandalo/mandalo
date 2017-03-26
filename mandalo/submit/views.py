@@ -9,7 +9,7 @@ def index(request):
     # return HttpResponse("Hello, world. You're at the polls index.")
 
 
-def view_assgn(request):
+def view_assign(request):
     assign_list = Assignment.objects.order_by('created_date')
     text = "<br>".join(a.name for a in assign_list)
     return HttpResponse(text)
