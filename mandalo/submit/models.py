@@ -19,5 +19,5 @@ class Submission(models.Model):
     email = models.EmailField()
     src_files = models.CharField(max_length=2000)
     result = models.CharField(max_length=2000)
-    assigment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
     language = models.CharField(max_length=2000)

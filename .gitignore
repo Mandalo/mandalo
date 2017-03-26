@@ -91,3 +91,5 @@ ENV/
 # Other stuff
 *.sqlite3*
 .*.pyc
+.*.swp
+uploads/*
