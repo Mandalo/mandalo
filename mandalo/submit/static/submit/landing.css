@@ -85,8 +85,16 @@ h1 {
   font-family: 'Dosis Bold', sans-sef;
 }
 
-.tab-pane-active{
-  height:300px;
-  overflow-y:scroll;
-  width:100%;
+#myTabs {
+   position: relative;
+}
+.tab-pane{
+   position: relative;
+   top: 42px;
+   bottom: 0;
+   right: 0;
+   left: 0;
+   height:800px;
+   overflow-y:auto;
+   width:100%;
 }
